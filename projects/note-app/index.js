@@ -1,10 +1,15 @@
 const btnEl = document.getElementById("btn");
 const appEl = document.getElementById("app");
 
-getNotes().forEach((note) => {
-  const noteEl = createNoteEl(note.id, note.content);
-  appEl.insertBefore(noteEl, btnEl);
-});
+const notas = getNotes();
+
+for (const note in notas) {
+    if (Object.hasOwnProperty.call(notas, note)) {
+        const element = notas[note];
+        const noteEl = createNoteEl(element.id, element.content);
+        appEl.insertBefore(noteEl, btnEl);
+    }
+}
 
 function createNoteEl(id, content) {
   const element = document.createElement("textarea");
